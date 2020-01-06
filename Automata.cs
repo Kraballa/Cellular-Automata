@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace SandBox
     {
         public Dictionary<int, Color> ColorMapping;
         public Dictionary<int, Action<int,int>> ActionMapping;
+        public int Place = NULL;
 
         protected Random Random;
         protected int Width;
@@ -34,7 +36,7 @@ namespace SandBox
 
         public virtual void Initialize()
         {
-
+            
         }
 
         /// <summary>
