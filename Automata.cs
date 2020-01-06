@@ -17,6 +17,8 @@ namespace SandBox
 
         private int[,] screen;
         private int[,] buffer;
+
+        protected const int NULL = 0;
         
         public Automata(int width, int height, int scale)
         {
@@ -120,6 +122,24 @@ namespace SandBox
                 Write(0, y, value);
                 Write(Width - 1, y, value);
             }
+        }
+
+        protected int GetNumNeightbors(int x, int y)
+        {
+            int numNeighbors = -1;
+
+            for(int xx = x-1; xx < x+1; xx++)
+            {
+                for(int yy = y-1; yy < yy+1; yy++)
+                {
+                    if (Read(x, y) != NULL)
+                    {
+                        numNeighbors++;
+                    }
+                }
+            }
+
+            return numNeighbors;
         }
     }
 }
