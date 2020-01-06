@@ -8,6 +8,7 @@ namespace SandBox
     public class Automata
     {
         public Dictionary<int, Color> ColorMapping;
+        public Dictionary<int, Action<int,int>> ActionMapping;
 
         protected Random Random;
         protected int Width;
@@ -23,7 +24,7 @@ namespace SandBox
             buffer = new int[width, height];
             Random = new Random();
             ColorMapping = new Dictionary<int, Color>();
-
+            ActionMapping = new Dictionary<int, Action<int, int>>();
             Width = width;
             Height = height;
             Scale = scale;
@@ -34,14 +35,30 @@ namespace SandBox
 
         }
 
+        /// <summary>
+        /// Used for adding new Cells into the Automata
+        /// </summary>
         public virtual void Update()
         {
 
         }
 
-        public virtual void SimulationStep()
+        /// <summary>
+        /// Used for simulating every cell in the Automata
+        /// </summary>
+        public void SimulationStep()
         {
-
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = Height - 1; y >= 0; y--)
+                {
+                    int val = Read(x, y);
+                    if (ActionMapping.ContainsKey(val))
+                    {
+                        ActionMapping[val](x,y);   
+                    }
+                }
+            }
         }
 
         public void Draw()
@@ -70,6 +87,32 @@ namespace SandBox
         protected void Write(int x, int y, int value)
         {
             buffer[x, y] = value;
+        }
+
+        protected void WriteRect(int x, int y, int xscale, int yscale, int value)
+        {
+            for(int xx = x; xx < x + xscale; xx++)
+            {
+                for(int yy = y; yy < y + yscale; yy++)
+                {
+                    Write(xx, yy, value);
+                }
+            }
+        }
+
+        protected void FillBorder(int value)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                Write(x, Height - 1, value);
+                Write(x, 0, value);
+            }
+
+            for (int y = 0; y < Height; y++)
+            {
+                Write(0, y, value);
+                Write(Width - 1, y, value);
+            }
         }
     }
 }
