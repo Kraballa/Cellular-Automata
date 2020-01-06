@@ -59,11 +59,19 @@ namespace SandBox
                     }
                 }
             }
+
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = Height - 1; y >= 0; y--)
+                {
+                    screen[x, y] = buffer[x, y];
+                }
+            }
         }
 
         public void Draw()
         {
-            screen = buffer;
+            
             for(int x = 0; x < Width; x++)
             {
                 for(int y = 0; y < Height; y++)
@@ -74,7 +82,6 @@ namespace SandBox
                         Color color = ColorMapping[val];
                         Render.Rect(x*Scale, y*Scale, Scale, Scale, color);
                     }
-                    
                 }
             }
         }

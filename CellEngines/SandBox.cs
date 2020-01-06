@@ -32,6 +32,12 @@ namespace SandBox.CellEngines
             ActionMapping.Add(SAND, (x, y) => {
                 if (Read(x, y + 1) != NULL)
                 {
+                    if(Read(x,y+1)== WATER)
+                    {
+                        Write(x, y + 1, SAND);
+                        Write(x, y, WATER);
+                        return;
+                    }
                     if (Random.Chance(0.5f))
                     {
                         if (x + 1 < Width && Read(x + 1, y + 1) == NULL)
@@ -151,7 +157,8 @@ namespace SandBox.CellEngines
         public override void Update()
         {
             base.Update();
-            WriteRect(Random.Next(Width - 5) + 1, 1, 4, 3, WATER);
+            WriteRect(Random.Next(Width - 5) + 1, 1, 2, 3, WATER);
+            WriteRect(Random.Next(Width - 5) + 1, 1, 1, 4, SAND);
         }
     }
 }
