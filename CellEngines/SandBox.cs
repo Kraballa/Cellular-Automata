@@ -71,24 +71,37 @@ namespace SandBox.CellEngines
             {
                 if (Read(x, y + 1) != NULL)
                 {
-                    if (Random.Chance(0.5f))
+                    if (x + 1 < Width && Read(x + 1, y + 1) == NULL)
                     {
-                        if (x + 1 != Width && Read(x + 1, y) == NULL)
+                        //prevent clipping through diagonals
+                        if (Read(x + 1, y) == NULL)
                         {
                             //move right down
-                            Write(x + 1, y, Read(x, y));
+                            Write(x + 1, y + 1, Read(x, y));
                             Write(x, y, NULL);
                         }
                     }
                     else
                     {
-                        if (x != 0 && Read(x - 1, y) == NULL)
+                        if (Random.Chance(0.5f))
                         {
-                            //move left down
-                            Write(x - 1, y, Read(x, y));
-                            Write(x, y, NULL);
+                            if (x + 1 != Width && Read(x + 1, y) == NULL)
+                            {
+                                //move right
+                                Write(x + 1, y, Read(x, y));
+                                Write(x, y, NULL);
+                            }
                         }
-                    }
+                        else
+                        {
+                            if (x != 0 && Read(x - 1, y) == NULL)
+                            {
+                                //move left
+                                Write(x - 1, y, Read(x, y));
+                                Write(x, y, NULL);
+                            }
+                        }
+                    }                    
                 }
                 else
                 {
