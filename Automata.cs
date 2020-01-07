@@ -10,7 +10,8 @@ namespace SandBox
     {
         public Dictionary<int, Color> ColorMapping;
         public Dictionary<int, Action<int,int>> ActionMapping;
-        public int Place = NULL;
+        public int LeftPlace = NULL;
+        public int RightPlace = NULL;
 
         protected Random Random;
         protected int Width;
@@ -44,7 +45,18 @@ namespace SandBox
         /// </summary>
         public virtual void Update()
         {
-
+            Point mousePos = new Point(MouseInput.X / Scale, MouseInput.Y / Scale);
+            Engine.Instance.Window.Title = "[" + mousePos.X + " : " + mousePos.Y + "]";
+            if (Engine.Instance.Screen.Contains(mousePos))
+            {
+                if(MouseInput.LeftClick())
+                {
+                    Write(mousePos.X, mousePos.Y, LeftPlace);
+                }else if (MouseInput.RightClick())
+                {
+                    Write(mousePos.X, mousePos.Y, NULL);
+                }
+            }
         }
 
         /// <summary>
@@ -92,12 +104,20 @@ namespace SandBox
 
         protected int Read(int x, int y)
         {
-            return screen[x, y];
+            if(x >= 0 && x < Width && y >= 0 && y < Height)
+            {
+                return screen[x, y];
+            }
+            else
+            {
+                return NULL;
+            }            
         }
 
         protected void Write(int x, int y, int value)
         {
-            buffer[x, y] = value;
+            if (x >= 0 && x < Width && y >= 0 && y < Height)
+                buffer[x, y] = value;
         }
 
         protected void WriteRect(int x, int y, int xscale, int yscale, int value)

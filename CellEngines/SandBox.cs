@@ -15,7 +15,7 @@ namespace SandBox.CellEngines
 
         public SandBox(int width, int height, int scale) : base(width, height, scale)
         {
-
+            LeftPlace = SOLID;
         }
 
         public override void Initialize()
@@ -31,7 +31,7 @@ namespace SandBox.CellEngines
             ActionMapping.Add(SAND, (x, y) => {
                 if (Read(x, y + 1) != NULL)
                 {
-                    if(Read(x,y+1)== WATER)
+                    if(Read(x,y + 1) == WATER)
                     {
                         Write(x, y + 1, SAND);
                         Write(x, y, WATER);
@@ -39,7 +39,7 @@ namespace SandBox.CellEngines
                     }
                     if (Random.Chance(0.5f))
                     {
-                        if (x + 1 < Width && Read(x + 1, y + 1) == NULL)
+                        if (Read(x + 1, y + 1) == NULL)
                         {
                             //prevent clipping through diagonals
                             if (Read(x + 1, y) == NULL)
@@ -52,7 +52,7 @@ namespace SandBox.CellEngines
                     }
                     else
                     {
-                        if (x > 0 && Read(x - 1, y + 1) == NULL)
+                        if (Read(x - 1, y + 1) == NULL)
                         {
                             //prevent clipping through diagonals
                             if (Read(x - 1, y) == NULL)
@@ -82,7 +82,7 @@ namespace SandBox.CellEngines
                     }
                     if (Random.Chance(0.5f))
                     {
-                        if (x + 1 < Width && Read(x + 1, y + 1) == NULL)
+                        if (Read(x + 1, y + 1) == NULL)
                         {
                             //prevent clipping through diagonals
                             if (Read(x + 1, y) == NULL)
@@ -95,7 +95,7 @@ namespace SandBox.CellEngines
                     }
                     else
                     {
-                        if (x > 0 && Read(x - 1, y + 1) == NULL)
+                        if (Read(x - 1, y + 1) == NULL)
                         {
                             //prevent clipping through diagonals
                             if (Read(x - 1, y) == NULL)
@@ -118,7 +118,7 @@ namespace SandBox.CellEngines
             {
                 if (Read(x, y + 1) != NULL)
                 {
-                    if (x + 1 < Width && Read(x + 1, y + 1) == NULL)
+                    if (Read(x + 1, y + 1) == NULL)
                     {
                         //prevent clipping through diagonals
                         if (Read(x + 1, y) == NULL)
@@ -132,7 +132,7 @@ namespace SandBox.CellEngines
                     {
                         if (Random.Chance(0.5f))
                         {
-                            if (x + 1 != Width && Read(x + 1, y) == NULL)
+                            if (Read(x + 1, y) == NULL)
                             {
                                 //move right
                                 Write(x + 1, y, Read(x, y));
@@ -141,7 +141,7 @@ namespace SandBox.CellEngines
                         }
                         else
                         {
-                            if (x != 0 && Read(x - 1, y) == NULL)
+                            if (Read(x - 1, y) == NULL)
                             {
                                 //move left
                                 Write(x - 1, y, Read(x, y));
@@ -159,11 +159,11 @@ namespace SandBox.CellEngines
             });
             ActionMapping.Add(SMOKE, (x, y) =>
             {
-                if (y != 0 && Read(x, y - 1) != NULL)
+                if (Read(x, y - 1) != NULL)
                 {
                     if (Random.Chance(0.5f))
                     {
-                        if (x + 1 != Width && Read(x + 1, y) == NULL)
+                        if (Read(x + 1, y) == NULL)
                         {
                             //move right
                             Write(x + 1, y, Read(x, y));
@@ -172,7 +172,7 @@ namespace SandBox.CellEngines
                     }
                     else
                     {
-                        if (x != 0 && Read(x - 1, y) == NULL)
+                        if (Read(x - 1, y) == NULL)
                         {
                             //move left
                             Write(x - 1, y, Read(x, y));
