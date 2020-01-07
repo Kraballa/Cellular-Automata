@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SandBox.CellEngines
 {
-    public class SandBox: Automata
+    public class SandBox : Automata
     {
         const int SAND = 1;
         const int SOLID = 2;
@@ -199,7 +199,7 @@ namespace SandBox.CellEngines
         {
             base.Update();
             WriteRect(Random.Next(Width - 5) + 1, 1, 2, 3, WATER);
-            WriteRect(Random.Next(Width - 5) + 1, 1, 1, 4, ICE);
+            //WriteRect(Random.Next(Width - 5) + 1, 1, 1, 4, ICE);
         }
     }
 }

@@ -17,9 +17,11 @@ namespace SandBox
         protected int Width;
         protected int Height;
         protected int Scale;
+        protected int Refreshrate = 0;
 
         private int[,] screen;
         private int[,] buffer;
+        private int count = 0;
 
         protected const int NULL = 0;
         
@@ -64,6 +66,17 @@ namespace SandBox
         /// </summary>
         public void SimulationStep()
         {
+            if (count > Refreshrate)
+            {
+                count = 0;
+            }
+            else
+            {
+                count++;
+                return;
+            }
+
+
             for (int x = 0; x < Width; x++)
             {
                 for (int y = Height - 1; y >= 0; y--)
@@ -75,7 +88,10 @@ namespace SandBox
                     }
                 }
             }
+        }
 
+        public void Draw()
+        {
             for (int x = 0; x < Width; x++)
             {
                 for (int y = Height - 1; y >= 0; y--)
@@ -83,12 +99,9 @@ namespace SandBox
                     screen[x, y] = buffer[x, y];
                 }
             }
-        }
 
-        public void Draw()
-        {
-            
-            for(int x = 0; x < Width; x++)
+
+            for (int x = 0; x < Width; x++)
             {
                 for(int y = 0; y < Height; y++)
                 {
@@ -152,9 +165,9 @@ namespace SandBox
 
             for(int xx = x-1; xx < x+1; xx++)
             {
-                for(int yy = y-1; yy < yy+1; yy++)
+                for(int yy = y-1; yy < y+1; yy++)
                 {
-                    if (Read(x, y) != NULL)
+                    if (Read(xx,yy) != NULL)
                     {
                         numNeighbors++;
                     }

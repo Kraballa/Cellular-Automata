@@ -16,13 +16,14 @@ namespace SandBox
         public static int Width => Instance.Screen.Width;
         public static int Height => Instance.Screen.Height;
 
+        private bool Paused = false;
 
         private float fade = 0.0f;
         public Engine(int width, int height, int scale)
         {
             Instance = this;
             graphics = new GraphicsDeviceManager(this);
-            Automata = new CellEngines.SandBox(width, height, scale);
+            Automata = new CellEngines.WireWorld(width, height, scale);
             graphics.PreferredBackBufferWidth = width * scale;
             graphics.PreferredBackBufferHeight = height * scale;
             Screen = new Rectangle(0,0,width * scale, height * scale);
@@ -38,6 +39,7 @@ namespace SandBox
             base.Initialize();
             Automata.Initialize();
             UI = new UI(Automata.ColorMapping);
+            Console.WriteLine("endinitialize");
         }        
 
         protected override void Update(GameTime gameTime)
@@ -45,12 +47,17 @@ namespace SandBox
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            base.Update(gameTime);
+
             MouseInput.Update();
             KeyboardInput.Update();
             UI.Update();
             Automata.Update();
-            Automata.SimulationStep();
-            base.Update(gameTime);
+            if(!Paused)
+                Automata.SimulationStep();
+
+            if (KeyboardInput.CheckPressed(Keys.Space))
+                Paused = !Paused;
         }
 
         protected override void Draw(GameTime gameTime)
