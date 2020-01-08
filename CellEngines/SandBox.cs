@@ -186,24 +186,6 @@ namespace SandBox.CellEngines
             });
 
             FillBorder(SOLID);
-            for (int i = Width / 4; i < Width * 3 / 4; i++)
-            {
-                Write(i, (int)(Math.Sin(i * 0.08) * 10 + Width / 2), SOLID);
-            }
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            
-            
-        }
-
-        public override void Update()
-        {
-            base.Update();
-            WriteRect(Random.Next(Width - 5) + 1, 1, 2, 3, WATER);
-            //WriteRect(Random.Next(Width - 5) + 1, 1, 1, 4, ICE);
         }
     }
 }
