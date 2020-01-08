@@ -33,6 +33,8 @@ namespace SandBox
             Screen = new Rectangle(0,0,width * scale, height * scale);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            
         }
 
         protected override void Initialize()
@@ -44,6 +46,7 @@ namespace SandBox
             Automata.Initialize();
             UI = new UI(Automata.ColorMapping);
             Console.WriteLine("engine initialized");
+            Window.Title = "Cellular Automata : " + Automata.Name;
         }        
 
         protected override void Update(GameTime gameTime)
