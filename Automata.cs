@@ -163,9 +163,9 @@ namespace SandBox
         {
             int numNeighbors = -1;
 
-            for(int xx = x-1; xx < x+1; xx++)
+            for(int xx = x-1; xx <= x+1; xx++)
             {
-                for(int yy = y-1; yy < y+1; yy++)
+                for(int yy = y-1; yy <= y+1; yy++)
                 {
                     if (Read(xx,yy) != NULL)
                     {

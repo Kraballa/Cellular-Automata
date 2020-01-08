@@ -12,7 +12,7 @@ namespace SandBox.CellEngines
         public const int NEGATIVE = 3;
         public WireWorld(int width, int height, int scale) : base(width, height, scale)
         {
-            ColorMapping.Add(WIRE, Color.Gray);
+            ColorMapping.Add(WIRE, Color.Yellow);
             ColorMapping.Add(POSITIVE, Color.Red);
             ColorMapping.Add(NEGATIVE, Color.Blue);
 
@@ -23,9 +23,9 @@ namespace SandBox.CellEngines
             ActionMapping.Add(WIRE, (x, y) =>
             {
                 int numPositive = 0;
-                for (int xx = x - 1; xx < x + 1; xx++)
+                for (int xx = x - 1; xx <= x + 1; xx++)
                 {
-                    for (int yy = y - 1; yy < y + 1; yy++)
+                    for (int yy = y - 1; yy <= y + 1; yy++)
                     {
                         if (Read(xx, yy) == POSITIVE)
                         {

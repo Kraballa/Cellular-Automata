@@ -20,7 +20,7 @@ namespace SandBox
             int count = 0;
             foreach (KeyValuePair<int, Color> kv in mappings)
             {
-                Mappings.Add(new Mapping(kv.Key, kv.Value, Keys.D0 + count));
+                Mappings.Add(new Mapping(kv.Key, kv.Value, Keys.D1 + count));
                 count++;
             }
             rect = new Rectangle(Engine.Width - 96, Engine.Height - 96, 94, 94);

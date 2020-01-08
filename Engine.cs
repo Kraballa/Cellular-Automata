@@ -23,7 +23,7 @@ namespace SandBox
         {
             Instance = this;
             graphics = new GraphicsDeviceManager(this);
-            Automata = new CellEngines.WireWorld(width, height, scale);
+            Automata = new CellEngines.GameOfLife(width, height, scale);
             graphics.PreferredBackBufferWidth = width * scale;
             graphics.PreferredBackBufferHeight = height * scale;
             Screen = new Rectangle(0,0,width * scale, height * scale);
