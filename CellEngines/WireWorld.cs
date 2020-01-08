@@ -12,6 +12,8 @@ namespace SandBox.CellEngines
         public const int NEGATIVE = 3;
         public WireWorld(int width, int height, int scale) : base(width, height, scale)
         {
+            Name = "Wire World";
+
             ColorMapping.Add(WIRE, Color.Yellow);
             ColorMapping.Add(POSITIVE, Color.Red);
             ColorMapping.Add(NEGATIVE, Color.Blue);

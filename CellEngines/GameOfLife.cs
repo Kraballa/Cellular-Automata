@@ -11,7 +11,8 @@ namespace SandBox.CellEngines
 
         public GameOfLife(int width, int height, int scale) : base(width, height, scale)
         {
-            Console.WriteLine("helloworld");
+            Name = "Conways Game of Life";
+
             ColorMapping.Add(NULL, Color.Black);
             ColorMapping.Add(ALIVE, Color.White);
 
@@ -22,10 +23,15 @@ namespace SandBox.CellEngines
                     Write(x, y, NULL);
                 }
             });
-            ActionMapping.Add(NULL, (x, y) => { if (GetNumNeightbors(x, y) == 3) { Write(x, y, ALIVE); } });
+            ActionMapping.Add(NULL, (x, y) => { 
+                if (GetNumNeightbors(x, y) == 3) 
+                { 
+                    Write(x, y, ALIVE); 
+                } 
+            });
 
             LeftPlace = ALIVE;
-            Console.WriteLine("end");
+            Refreshrate = 30;
         }
     }
 }

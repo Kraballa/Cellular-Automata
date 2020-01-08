@@ -23,7 +23,7 @@ namespace SandBox
         {
             Instance = this;
             graphics = new GraphicsDeviceManager(this);
-            Automata = new CellEngines.GameOfLife(width, height, scale);
+            Automata = new CellEngines.WireWorld(width, height, scale);
             graphics.PreferredBackBufferWidth = width * scale;
             graphics.PreferredBackBufferHeight = height * scale;
             Screen = new Rectangle(0,0,width * scale, height * scale);
@@ -39,7 +39,7 @@ namespace SandBox
             base.Initialize();
             Automata.Initialize();
             UI = new UI(Automata.ColorMapping);
-            Console.WriteLine("endinitialize");
+            Console.WriteLine("engine initialized");
         }        
 
         protected override void Update(GameTime gameTime)
@@ -57,7 +57,20 @@ namespace SandBox
                 Automata.SimulationStep();
 
             if (KeyboardInput.CheckPressed(Keys.Space))
+            {
                 Paused = !Paused;
+                Console.WriteLine(Paused ? "paused" : "unpaused");
+            }
+
+            if (KeyboardInput.CheckPressed(Keys.Up) && Automata.Refreshrate > 0)
+            {
+                Automata.Refreshrate--;
+            }
+            else if (KeyboardInput.CheckPressed(Keys.Down))
+            {
+                Automata.Refreshrate++;
+            }
+                
         }
 
         protected override void Draw(GameTime gameTime)

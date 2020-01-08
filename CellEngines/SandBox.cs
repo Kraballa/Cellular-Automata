@@ -15,12 +15,9 @@ namespace SandBox.CellEngines
 
         public SandBox(int width, int height, int scale) : base(width, height, scale)
         {
+            Name = "Sandbox Simulation";
             LeftPlace = SOLID;
-        }
 
-        public override void Initialize()
-        {
-            base.Initialize();
             //define colours
             ColorMapping.Add(SAND, Color.Yellow);
             ColorMapping.Add(SOLID, Color.Gray);
@@ -31,7 +28,7 @@ namespace SandBox.CellEngines
             ActionMapping.Add(SAND, (x, y) => {
                 if (Read(x, y + 1) != NULL)
                 {
-                    if(Read(x,y + 1) == WATER)
+                    if (Read(x, y + 1) == WATER)
                     {
                         Write(x, y + 1, SAND);
                         Write(x, y, WATER);
@@ -148,7 +145,7 @@ namespace SandBox.CellEngines
                                 Write(x, y, NULL);
                             }
                         }
-                    }                    
+                    }
                 }
                 else
                 {
@@ -193,6 +190,13 @@ namespace SandBox.CellEngines
             {
                 Write(i, (int)(Math.Sin(i * 0.08) * 10 + Width / 2), SOLID);
             }
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            
+            
         }
 
         public override void Update()

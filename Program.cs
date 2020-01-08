@@ -7,7 +7,7 @@ namespace SandBox
         [STAThread]
         static void Main()
         {
-            using (var game = new Engine(150,100,8))
+            using (var game = new Engine(80,60,16))
                 game.Run();
         }
     }

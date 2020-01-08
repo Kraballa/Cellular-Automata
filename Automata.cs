@@ -12,12 +12,14 @@ namespace SandBox
         public Dictionary<int, Action<int,int>> ActionMapping;
         public int LeftPlace = NULL;
         public int RightPlace = NULL;
+        public int Refreshrate = 0;
+        public string Name { get; protected set; }
 
         protected Random Random;
         protected int Width;
         protected int Height;
         protected int Scale;
-        protected int Refreshrate = 0;
+        
 
         private int[,] screen;
         private int[,] buffer;
@@ -39,7 +41,7 @@ namespace SandBox
 
         public virtual void Initialize()
         {
-            
+            Console.WriteLine("automata initialized");
         }
 
         /// <summary>
@@ -48,7 +50,6 @@ namespace SandBox
         public virtual void Update()
         {
             Point mousePos = new Point(MouseInput.X / Scale, MouseInput.Y / Scale);
-            Engine.Instance.Window.Title = "[" + mousePos.X + " : " + mousePos.Y + "]";
             if (Engine.Instance.Screen.Contains(mousePos))
             {
                 if(MouseInput.LeftClick())
@@ -161,13 +162,13 @@ namespace SandBox
 
         protected int GetNumNeightbors(int x, int y)
         {
-            int numNeighbors = -1;
+            int numNeighbors = 0;
 
             for(int xx = x-1; xx <= x+1; xx++)
             {
                 for(int yy = y-1; yy <= y+1; yy++)
                 {
-                    if (Read(xx,yy) != NULL)
+                    if ((xx != x || yy != y) && Read(xx,yy) != NULL)
                     {
                         numNeighbors++;
                     }
