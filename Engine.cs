@@ -5,6 +5,9 @@ using System;
 
 namespace SandBox
 {
+    /// <summary>
+    /// Main class that handles updating everything else.
+    /// </summary>
     public class Engine : Game
     {
         GraphicsDeviceManager graphics;
@@ -18,6 +21,7 @@ namespace SandBox
 
         private bool Paused = false;
 
+        //if > 0 screen isn't cleared but instead faded out. creates a weird visual effect.
         private float fade = 0.0f;
         public Engine(int width, int height, int scale)
         {
@@ -62,6 +66,7 @@ namespace SandBox
                 Console.WriteLine(Paused ? "paused" : "unpaused");
             }
 
+            //speed up or slow down simulation
             if (KeyboardInput.CheckPressed(Keys.Up) && Automata.Refreshrate > 0)
             {
                 Automata.Refreshrate--;
@@ -75,7 +80,6 @@ namespace SandBox
 
         protected override void Draw(GameTime gameTime)
         {
-            
             if(fade == 0)
             {
                 GraphicsDevice.Clear(Color.Black);

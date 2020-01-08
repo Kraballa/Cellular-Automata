@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace SandBox
 {
+    /// <summary>
+    /// Renderer class that reveals various pixel-based methods globally. Based on the `Draw` class of the Monogle game engine.
+    /// See `https://bitbucket.org/MattThorson/monocle-engine/src/default/Monocle/Util/Draw.cs`
+    /// </summary>
     public class Render
     {
         public static Texture2D Pixel;
@@ -186,7 +190,6 @@ namespace SandBox
         }
 
         #endregion
-
 
         #region Weird Stuff
 

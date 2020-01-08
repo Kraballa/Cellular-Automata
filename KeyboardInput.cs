@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SandBox
 {
+    /// <summary>
+    /// Basic Keyboard input class that handles key presses.
+    /// </summary>
     public static class KeyboardInput
     {
         private static KeyboardState State;

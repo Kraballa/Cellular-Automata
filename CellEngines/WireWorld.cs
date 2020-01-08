@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SandBox.CellEngines
 {
+    /// <summary>
+    /// Wire World Cellular Automata. See `https://en.wikipedia.org/wiki/Wireworld`
+    /// </summary>
     class WireWorld : Automata
     {
         public const int WIRE = 1;

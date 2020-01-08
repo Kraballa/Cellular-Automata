@@ -14,6 +14,10 @@ using System.Xml.Serialization;
 
 namespace SandBox
 {
+    /// <summary>
+    /// Calc class that provides a ton of useful functions. Copied from Matt Thorsons Monocle Engine.
+    /// See `https://bitbucket.org/MattThorson/monocle-engine/src/default/Monocle/Util/Calc.cs`
+    /// </summary>
     public static class Calc
     {
         #region Enums

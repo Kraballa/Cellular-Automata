@@ -6,6 +6,9 @@ using System.Text;
 
 namespace SandBox
 {
+    /// <summary>
+    /// Basic Mouse input class that handles mouse clicks and presses.
+    /// </summary>
     public static class MouseInput
     {
 

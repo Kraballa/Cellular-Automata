@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SandBox.CellEngines
 {
+    /// <summary>
+    /// Cellular Automata that simulates physics-like behavior of sand, water and a few more things. kind of wonky though
+    /// </summary>
     public class SandBox : Automata
     {
         const int SAND = 1;

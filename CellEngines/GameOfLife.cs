@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SandBox.CellEngines
 {
+    /// <summary>
+    /// Conways Game of Life. See `https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life`
+    /// </summary>
     public class GameOfLife : Automata
     {
         public const int ALIVE = 1;
