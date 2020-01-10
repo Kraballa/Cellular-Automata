@@ -52,6 +52,12 @@ namespace SandBox
                 Render.HollowRect(rect, new Color(Color.Black, 30 / fade));
                 fade++;
             }
+
+            if (Engine.Instance.Paused)
+            {
+                Render.Rect(Engine.Width - 66, 10, 22, 56, Color.LightGray);
+                Render.Rect(Engine.Width - 33, 10, 22, 56, Color.LightGray);
+            }
         }
 
         public class Mapping

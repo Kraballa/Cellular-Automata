@@ -19,7 +19,7 @@ namespace SandBox
         public static int Width => Instance.Screen.Width;
         public static int Height => Instance.Screen.Height;
 
-        private bool Paused = false;
+        public bool Paused { get; private set; }
 
         //if > 0 screen isn't cleared but instead faded out. creates a weird visual effect.
         private float fade = 0.0f;
@@ -27,13 +27,13 @@ namespace SandBox
         {
             Instance = this;
             graphics = new GraphicsDeviceManager(this);
-            Automata = new CellEngines.WireWorld(width, height, scale);
+            Automata = new CellEngines.WirererWorlder(width, height, scale);
             graphics.PreferredBackBufferWidth = width * scale;
             graphics.PreferredBackBufferHeight = height * scale;
             Screen = new Rectangle(0,0,width * scale, height * scale);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
+            Paused = false;
             
         }
 

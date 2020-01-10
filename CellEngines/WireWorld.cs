@@ -45,7 +45,6 @@ namespace SandBox.CellEngines
             });
 
             LeftPlace = WIRE;
-            RightPlace = POSITIVE;
             Refreshrate = 6;
         }
     }

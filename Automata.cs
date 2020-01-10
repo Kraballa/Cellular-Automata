@@ -57,7 +57,7 @@ namespace SandBox
                     Write(mousePos.X, mousePos.Y, LeftPlace);
                 }else if (MouseInput.RightClick())
                 {
-                    Write(mousePos.X, mousePos.Y, NULL);
+                    Write(mousePos.X, mousePos.Y, RightPlace);
                 }
             }
         }
@@ -128,10 +128,20 @@ namespace SandBox
             }            
         }
 
+        protected int Read(Point p)
+        {
+            return Read(p.X, p.Y);
+        }
+
         protected void Write(int x, int y, int value)
         {
             if (x >= 0 && x < Width && y >= 0 && y < Height)
                 buffer[x, y] = value;
+        }
+
+        protected void Write(Point p, int value)
+        {
+            Write(p.X, p.Y, value);
         }
 
         protected void WriteRect(int x, int y, int xscale, int yscale, int value)
@@ -162,13 +172,18 @@ namespace SandBox
 
         protected int GetNumNeightbors(int x, int y)
         {
+            return 8-GetNumNeightbors(x, y, NULL);
+        }
+
+        protected int GetNumNeightbors(int x, int y, int cellType)
+        {
             int numNeighbors = 0;
 
-            for(int xx = x-1; xx <= x+1; xx++)
+            for (int xx = x - 1; xx <= x + 1; xx++)
             {
-                for(int yy = y-1; yy <= y+1; yy++)
+                for (int yy = y - 1; yy <= y + 1; yy++)
                 {
-                    if ((xx != x || yy != y) && Read(xx,yy) != NULL)
+                    if ((xx != x || yy != y) && Read(xx, yy) == cellType)
                     {
                         numNeighbors++;
                     }
@@ -176,6 +191,25 @@ namespace SandBox
             }
 
             return numNeighbors;
+        }
+
+        protected Point[] GetAllNeighbors(int x, int y)
+        {
+            Point[] points = new Point[8];
+            int index = 0;
+            for (int xx = x - 1; xx <= x + 1; xx++)
+            {
+                for (int yy = y - 1; yy <= y + 1; yy++)
+                {
+                    if (xx != x || yy != y)
+                    {
+                        points[index] = new Point(xx, yy);
+                        index++;
+                    }
+                }
+            }
+
+            return points;
         }
     }
 }
